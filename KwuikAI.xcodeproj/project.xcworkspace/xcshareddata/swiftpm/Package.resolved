@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "openaiswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Swift-Almanac/OpenAISwift",
+      "state" : {
+        "branch" : "main",
+        "revision" : "5966e3c4484a8f5cc1db44e8be6e14736c704df3"
+      }
+    }
+  ],
+  "version" : 2
+}
