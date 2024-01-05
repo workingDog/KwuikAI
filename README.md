@@ -2,7 +2,7 @@
 
 A chat-like SwiftUI OpenAI demo App, includes text and image output.
 
-Using, the `OpenAI API Client Library in Swift`  [OpenAISwift](https://github.com/Swift-Almanac/OpenAISwift), 
+Using, the **Swift-Almanac** `OpenAI API Client Library in Swift`  [OpenAISwift](https://github.com/Swift-Almanac/OpenAISwift), 
 `a community-maintained library to access OpenAI HTTP API's.`
 
 
