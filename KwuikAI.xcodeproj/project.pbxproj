@@ -29,7 +29,7 @@
 		C738A91B29E43B8B009E9494 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C738A91D29E43B8B009E9494 /* Localizable.strings */; };
 		C738A92029E43C79009E9494 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C738A91F29E43C79009E9494 /* README.md */; };
 		C75D6FC22B3FDEAF00239E30 /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = C75D6FC12B3FDEAF00239E30 /* OpenAISwift */; };
-		C7A53ED629E65FDD00088B8F /* screen2.png in Resources */ = {isa = PBXBuildFile; fileRef = C7A53ED529E65FDD00088B8F /* screen2.png */; };
+		C795E7422B70C6D30029AE4B /* screen4.png in Resources */ = {isa = PBXBuildFile; fileRef = C795E7412B70C6D30029AE4B /* screen4.png */; };
 		C7CE2BD72A2EEAEF00BB552B /* SimpleBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CE2BD62A2EEAEF00BB552B /* SimpleBubble.swift */; };
 		C7D6584429E4EFBD001CBACF /* screen3.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D6584329E4EFBD001CBACF /* screen3.png */; };
 		C7FBCDD129E52A7A00C457BB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FBCDD029E52A7A00C457BB /* MainView.swift */; };
@@ -60,7 +60,7 @@
 		C738A91C29E43B8B009E9494 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C738A91E29E43B95009E9494 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C738A91F29E43C79009E9494 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		C7A53ED529E65FDD00088B8F /* screen2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen2.png; sourceTree = "<group>"; };
+		C795E7412B70C6D30029AE4B /* screen4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen4.png; sourceTree = "<group>"; };
 		C7CE2BD62A2EEAEF00BB552B /* SimpleBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleBubble.swift; sourceTree = "<group>"; };
 		C7D6584329E4EFBD001CBACF /* screen3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen3.png; sourceTree = "<group>"; };
 		C7FBCDD029E52A7A00C457BB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 		C738A8E829E4391E009E9494 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				C7A53ED529E65FDD00088B8F /* screen2.png */,
+				C795E7412B70C6D30029AE4B /* screen4.png */,
 				C7D6584329E4EFBD001CBACF /* screen3.png */,
 			);
 			path = Images;
@@ -232,8 +232,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7A53ED629E65FDD00088B8F /* screen2.png in Resources */,
 				C7D6584429E4EFBD001CBACF /* screen3.png in Resources */,
+				C795E7422B70C6D30029AE4B /* screen4.png in Resources */,
 				C738A90729E4391E009E9494 /* License.txt in Resources */,
 				C738A8D429E43739009E9494 /* Preview Assets.xcassets in Resources */,
 				C738A91B29E43B8B009E9494 /* Localizable.strings in Resources */,

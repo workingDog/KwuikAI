@@ -82,9 +82,9 @@ struct ContentView: View {
             Image(systemName: "ellipsis.message").tag(OpenAiModel.ModeType.chat)
             Image(systemName: "photo").tag(OpenAiModel.ModeType.image)
         }.pickerStyle(.segmented)
-        .foregroundStyle(openAI.toolsColor, .blue)
-        .frame(width: 130)
-        .scaleEffect(1.2)
+            .foregroundStyle(openAI.toolsColor, .blue)
+            .frame(width: 130)
+            .scaleEffect(1.2)
     }
     
     var settingsButton: some View {

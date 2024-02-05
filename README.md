@@ -7,7 +7,7 @@ Using, the **Swift-Almanac** `OpenAI API Client Library in Swift`  [OpenAISwift]
 
 
 <p float="left">
-  <img src="Images/screen2.png" width="333"  height="444" />
+  <img src="Images/screen4.png" width="333"  height="444" />
     <img src="Images/screen3.png" width="333"  height="444" />
 </p>
 
