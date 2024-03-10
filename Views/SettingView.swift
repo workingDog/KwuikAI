@@ -12,12 +12,13 @@ import OpenAISwift
 struct SettingView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(OpenAiModel.self) var openAI: OpenAiModel
+    @Environment(InterfaceModel.self) var interface
     
     @State var showKey = false
     
     var body: some View {
         ZStack {
-            openAI.backColor
+            interface.backColor
             ScrollView {
                 VStack (alignment: .leading, spacing: 15) {
                 #if targetEnvironment(macCatalyst)
@@ -54,24 +55,26 @@ struct SettingView: View {
             }
         }
         .sheet(isPresented: $showKey) {
-            KeyView().environment(openAI)
+            KeyView()
+                .environment(openAI)
+                .environment(interface)
         }
-        .preferredColorScheme(openAI.isDarkMode ? .dark : .light)
-        .environment(\.locale, Locale(identifier: openAI.kwuiklang))
+        .preferredColorScheme(interface.isDarkMode ? .dark : .light)
+        .environment(\.locale, Locale(identifier: interface.kwuiklang))
         .onDisappear {
             doSave()
         }
     }
     
     func doSave() {
-        StoreService.setColor(OpenAiModel.ColorType.back, color: openAI.backColor)
-        StoreService.setColor(OpenAiModel.ColorType.text, color: openAI.textColor)
-        StoreService.setColor(OpenAiModel.ColorType.question, color: openAI.questionColor)
-        StoreService.setColor(OpenAiModel.ColorType.answer, color: openAI.answerColor)
-        StoreService.setColor(OpenAiModel.ColorType.copy, color: openAI.copyColor)
-        StoreService.setColor(OpenAiModel.ColorType.tools, color: openAI.toolsColor)
-        StoreService.setLang(openAI.kwuiklang)
-        StoreService.setDisplayMode(openAI.isDarkMode)
+        StoreService.setColor(ColorType.back, color: interface.backColor)
+        StoreService.setColor(ColorType.text, color: interface.textColor)
+        StoreService.setColor(ColorType.question, color: interface.questionColor)
+        StoreService.setColor(ColorType.answer, color: interface.answerColor)
+        StoreService.setColor(ColorType.copy, color: interface.copyColor)
+        StoreService.setColor(ColorType.tools, color: interface.toolsColor)
+        StoreService.setLang(interface.kwuiklang)
+        StoreService.setDisplayMode(interface.isDarkMode)
         
         dismiss()
     }

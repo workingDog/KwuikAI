@@ -12,6 +12,8 @@ import OpenAISwift
 
 struct MainView: View {
     @Environment(OpenAiModel.self) var openAI: OpenAiModel
+    @Environment(InterfaceModel.self) var interface
+    
     @State var text = ""
     @State var isThinking = false
     @State var isPressed = false
@@ -41,8 +43,8 @@ struct MainView: View {
                 Text(openAI.selectedMode == .chat ? "Chat" : "Image")
                 .font(Font.custom("Didot-Italic", size: 18))
                 .frame(width: 80, height: 80)
-                .foregroundColor(openAI.textColor)
-                .background(isPressed ? openAI.copyColor : openAI.questionColor)
+                .foregroundColor(interface.textColor)
+                .background(isPressed ? interface.copyColor : interface.questionColor)
                 .animation(.easeInOut(duration: 0.2)
                     .reverse(on: $isPressed, delay: 0.2), value: isPressed)
                 .clipShape(Circle())
@@ -55,8 +57,8 @@ struct MainView: View {
                     .font(.callout)
                     .padding(.all, 10)
                     .scrollContentBackground(.hidden)
-                    .foregroundColor(openAI.textColor)
-                    .background(openAI.questionColor)
+                    .foregroundColor(interface.textColor)
+                    .background(interface.questionColor)
             }
         }
     }

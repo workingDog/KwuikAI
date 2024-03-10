@@ -11,13 +11,15 @@ import Observation
 @main
 struct KwuikAIApp: App {
     @State private var openAI = OpenAiModel()
+    @State private var interface = InterfaceModel()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environment(openAI)
-                .environment(\.locale, Locale(identifier: openAI.kwuiklang))
-                .preferredColorScheme(openAI.isDarkMode ? .dark : .light)
+                .environment(interface)
+                .environment(\.locale, Locale(identifier: interface.kwuiklang))
+                .preferredColorScheme(interface.isDarkMode ? .dark : .light)
         }
     }
 }

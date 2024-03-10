@@ -11,52 +11,52 @@ import SwiftUI
 
 
 struct ColorView: View {
-    @Environment(OpenAiModel.self) var openAI: OpenAiModel
+    @Environment(InterfaceModel.self) var interface
 
     var body: some View {
-        @Bindable var openAI = openAI
+        @Bindable var interface = interface
         VStack {
             HStack {
                 ColorPicker("Colors", selection: Binding<Color>(
                     get: {
-                        switch openAI.selectedColor {
-                            case .back: return openAI.backColor
-                            case .text: return openAI.textColor
-                            case .question: return openAI.questionColor
-                            case .answer: return openAI.answerColor
-                            case .copy: return openAI.copyColor
-                            case .tools: return openAI.toolsColor
+                        switch interface.selectedColor {
+                            case .back: return interface.backColor
+                            case .text: return interface.textColor
+                            case .question: return interface.questionColor
+                            case .answer: return interface.answerColor
+                            case .copy: return interface.copyColor
+                            case .tools: return interface.toolsColor
                         }
                     },
                     set: {
-                        switch openAI.selectedColor {
-                            case .back: openAI.backColor = $0
-                            case .text: openAI.textColor = $0
-                            case .question: openAI.questionColor = $0
-                            case .answer: openAI.answerColor = $0
-                            case .copy: openAI.copyColor = $0
-                            case .tools: openAI.toolsColor = $0
+                        switch interface.selectedColor {
+                            case .back: interface.backColor = $0
+                            case .text: interface.textColor = $0
+                            case .question: interface.questionColor = $0
+                            case .answer: interface.answerColor = $0
+                            case .copy: interface.copyColor = $0
+                            case .tools: interface.toolsColor = $0
                         }
                     }
                 ))
                 .frame(width: 111, height: 60)
                 .padding(15)
                 Spacer()
-                Toggle(isOn: $openAI.isDarkMode) {
+                Toggle(isOn: $interface.isDarkMode) {
                     Text("Dark")
                 }.frame(width: 110)
                  .padding(15)
             }
-            Picker("", selection: $openAI.selectedColor) {
-                Text("Back").tag(OpenAiModel.ColorType.back)
-                Text("Text").tag(OpenAiModel.ColorType.text)
-                Text("Question").tag(OpenAiModel.ColorType.question)
+            Picker("", selection: $interface.selectedColor) {
+                Text("Back").tag(ColorType.back)
+                Text("Text").tag(ColorType.text)
+                Text("Question").tag(ColorType.question)
             }
             .pickerStyle(.segmented)
-            Picker("", selection: $openAI.selectedColor) {
-                Text("Answer").tag(OpenAiModel.ColorType.answer)
-                Text("Copy").tag(OpenAiModel.ColorType.copy)
-                Text("Tools").tag(OpenAiModel.ColorType.tools)
+            Picker("", selection: $interface.selectedColor) {
+                Text("Answer").tag(ColorType.answer)
+                Text("Copy").tag(ColorType.copy)
+                Text("Tools").tag(ColorType.tools)
             }
             .pickerStyle(.segmented)
         }

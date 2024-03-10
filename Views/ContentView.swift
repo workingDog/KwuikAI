@@ -12,6 +12,7 @@ import Observation
 
 struct ContentView: View {
     @Environment(OpenAiModel.self) var openAI
+    @Environment(InterfaceModel.self) var interface
     
     @State var showSettings = false
     @State var showShareSheet = false
@@ -21,7 +22,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [openAI.backColor, .white]),
+            LinearGradient(gradient: Gradient(colors: [interface.backColor, .white]),
                            startPoint: .top, endPoint: .bottom)
             .ignoresSafeArea(.all)
             .onTapGesture { focusValue = false }
@@ -31,7 +32,9 @@ struct ContentView: View {
             }
         }
         .sheet(isPresented: $showSettings) {
-            SettingView().environment(openAI)
+            SettingView()
+                .environment(openAI)
+                .environment(interface)
         }
         .sheet(isPresented: $showShareSheet) {
             if let txt = openAI.selectedConversation?.answers?.compactMap({$0.text}).first {
@@ -44,7 +47,6 @@ struct ContentView: View {
                 }
             }
         }
-        .environment(openAI)
     }
     
     var theToolbar: some View {
@@ -55,7 +57,7 @@ struct ContentView: View {
                 modesButton
                 Spacer()
                 settingsButton
-            }.foregroundColor(openAI.toolsColor)
+            }.foregroundColor(interface.toolsColor)
                 .font(.title)
                 .padding(.bottom, 8)
             
@@ -71,7 +73,7 @@ struct ContentView: View {
                 let y = sin(Double(i) * 0.2) * 10.0
                 path.addLine(to: CGPoint(x: x, y: y))
             }
-        }.stroke(openAI.toolsColor, lineWidth: 2)
+        }.stroke(interface.toolsColor, lineWidth: 2)
             .frame(maxHeight: 10)
             .offset(x: -10, y: 0)
     }
@@ -79,10 +81,10 @@ struct ContentView: View {
     var modesButton: some View {
         @Bindable var openAI = openAI
         return Picker("", selection: $openAI.selectedMode) {
-            Image(systemName: "ellipsis.message").tag(OpenAiModel.ModeType.chat)
-            Image(systemName: "photo").tag(OpenAiModel.ModeType.image)
+            Image(systemName: "ellipsis.message").tag(ModeType.chat)
+            Image(systemName: "photo").tag(ModeType.image)
         }.pickerStyle(.segmented)
-            .foregroundStyle(openAI.toolsColor, .blue)
+            .foregroundStyle(interface.toolsColor, .blue)
             .frame(width: 130)
             .scaleEffect(1.2)
     }

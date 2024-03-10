@@ -25,7 +25,7 @@ struct Conversation: Identifiable {
     var question: String
     var answers: [TextAnswer]?
     var images: [ImageAnswer]?
-    var chats: [ChatMessage]?
+    var chats: [ChatMessage]?  // Note: chats are kept in chats, but displayed from answers
     
     init(question: String = "",
          answers: [TextAnswer]? = nil,

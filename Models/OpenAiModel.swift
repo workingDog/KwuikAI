@@ -26,46 +26,17 @@ import Observation
     var numImages = 1
     
     var model: OpenAIEndpointModelType.ChatCompletions = .gpt4
-    
-    // UI colors
-    var backColor = Color.teal
-    var textColor = Color.white
-    var questionColor = Color.green
-    var answerColor = Color.blue
-    var copyColor = Color.red
-    var toolsColor = Color.blue
-    var selectedColor = ColorType.back
-    
+
     var selectedMode: ModeType = .chat
-    var kwuiklang = "en"
     
     //@ObservationIgnored @AppStorage("isDarkMode")
     var isDarkMode = false
     
     @ObservationIgnored var client: OpenAISwift
     
-    enum ModeType: String, CaseIterable {
-        case image, chat
-    }
-    
-    enum ColorType: String, CaseIterable {
-        case back, text, question, answer, copy, tools
-    }
-    
     init() {
         let apikey = StoreService.getKey() ?? ""
-        
         client = OpenAISwift(config: .makeDefaultOpenAI(apiKey: apikey))
-        
-        backColor = StoreService.getColor(ColorType.back)
-        textColor = StoreService.getColor(ColorType.text)
-        questionColor = StoreService.getColor(ColorType.question)
-        answerColor = StoreService.getColor(ColorType.answer)
-        copyColor = StoreService.getColor(ColorType.copy)
-        toolsColor = StoreService.getColor(ColorType.tools)
-        
-        kwuiklang = StoreService.getLang()
-        isDarkMode = StoreService.getDisplayMode()
     }
     
     func updateClientKey(_ apikey: String) {

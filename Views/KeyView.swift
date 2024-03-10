@@ -13,13 +13,14 @@ import OpenAISwift
 struct KeyView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(OpenAiModel.self) var openAI: OpenAiModel
+    @Environment(InterfaceModel.self) var interface
     
     @State var theKey = ""
     
     var body: some View {
-        @Bindable var openAI = openAI
+        @Bindable var interface = interface
         ZStack {
-            openAI.backColor
+            interface.backColor
             VStack (alignment: .leading, spacing: 60) {
 #if targetEnvironment(macCatalyst)
                 HStack {
@@ -39,7 +40,7 @@ struct KeyView: View {
                     Spacer()
                 }.padding(.top, 50)
                 
-                CustomSecureField(backColor: $openAI.backColor, password: $theKey)
+                CustomSecureField(backColor: $interface.backColor, password: $theKey)
                     .foregroundColor(.blue)
                     .textFieldStyle(CustomTextFieldStyle())
                     .padding(.top, 50)
@@ -60,7 +61,7 @@ struct KeyView: View {
                 theKey = StoreService.getKey() ?? ""
             }
         }
-        .preferredColorScheme(openAI.isDarkMode ? .dark : .light)
+        .preferredColorScheme(interface.isDarkMode ? .dark : .light)
     }
     
     func doSaveKey() {

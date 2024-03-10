@@ -12,6 +12,7 @@ import OpenAISwift
 
 struct RightBubbleView: View {
     @Environment(OpenAiModel.self) var openAI: OpenAiModel
+    @Environment(InterfaceModel.self) var interface
     
     @State var converse: Conversation
     @Binding var isThinking: Bool
@@ -32,15 +33,15 @@ struct RightBubbleView: View {
                  //   .progressViewStyle(IconRotateStyle())
                     .frame(width: 333, height: 111)
                     .padding(.all, 10)
-                    .background(openAI.answerColor)
+                    .background(interface.answerColor)
             } else {
                 if let answers = converse.answers {
                     ForEach(answers) { answer in
                        // Text(displayText)
                         Text(answer.text)
                             .padding(.all, 15)
-                            .foregroundColor(openAI.textColor)
-                            .background(isPressed ? openAI.copyColor : openAI.answerColor)
+                            .foregroundColor(interface.textColor)
+                            .background(isPressed ? interface.copyColor : interface.answerColor)
                             .onTapGesture {
                                 UIPasteboard.general.string = answer.text
                                 isPressed.toggle()
@@ -64,7 +65,7 @@ struct RightBubbleView: View {
                                         tappedImageId = img.id
                                         isPressed.toggle()
                                     }
-                                    .border(isPressed && (tappedImageId == img.id) ? openAI.copyColor : .clear, width: 4)
+                                    .border(isPressed && (tappedImageId == img.id) ? interface.copyColor : .clear, width: 4)
                                     .animation(.easeInOut(duration: 0.2)
                                         .reverse(on: $isPressed, delay: 0.2), value: isPressed)
                             }

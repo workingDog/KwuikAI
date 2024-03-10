@@ -13,6 +13,7 @@ import OpenAISwift
 
 struct CompletionView: View {
     @Environment(OpenAiModel.self) var openAI: OpenAiModel
+    @Environment(InterfaceModel.self) var interface
 
     @Binding var isThinking: Bool
     var isFocused: FocusState<Bool>.Binding
@@ -31,8 +32,8 @@ struct CompletionView: View {
                                 ChatBubble(direction: .left) {
                                     Text(converse.question)
                                         .padding(.all, 15)
-                                        .foregroundColor(openAI.textColor)
-                                        .background(isPressed && (openAI.selectedConversation?.id == converse.id) ? openAI.copyColor : openAI.questionColor)
+                                        .foregroundColor(interface.textColor)
+                                        .background(isPressed && (openAI.selectedConversation?.id == converse.id) ? interface.copyColor : interface.questionColor)
                                 }
                                 .onTapGesture {
                                     UIPasteboard.general.string = converse.question
@@ -46,7 +47,7 @@ struct CompletionView: View {
                             }
                         }
                         .id(converse.id.uuidString)
-                        .listRowBackground(openAI.backColor)
+                        .listRowBackground(interface.backColor)
                         .simultaneousGesture(TapGesture()
                             .onEnded {
                                 openAI.selectedConversation = converse

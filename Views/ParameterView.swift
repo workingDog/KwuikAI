@@ -12,10 +12,14 @@ import SwiftUI
 
 struct ParameterView: View {
     @Environment(OpenAiModel.self) var openAI: OpenAiModel
+    @Environment(InterfaceModel.self) var interface
+    
     @State private var lang = "en"
     
     var body: some View {
         @Bindable var openAI = openAI
+        @Bindable var interface = interface
+        
         VStack {
 
             HStack {
@@ -47,7 +51,7 @@ struct ParameterView: View {
             }
             
             HStack {
-                Picker("", selection: $openAI.kwuiklang) {
+                Picker("", selection: $interface.kwuiklang) {
                     Text(verbatim: "English").tag("en")
                     Text(verbatim: "日本語").tag("ja")
                 }.pickerStyle(.segmented).frame(width: 222)

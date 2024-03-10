@@ -11,8 +11,8 @@ import Foundation
 
 class KeychainInterface {
     
-    static var service = "ringow.com.kwuikai"
-    static var account = "yoyo.kwuikai.apikey"
+    static var service = "ringow.com.kwuikai.openai"
+    static var account = "ringow.kwuikai.apikey.openai"
     
     enum KeychainError: Error {
         // Attempted read for an item that does not exist.

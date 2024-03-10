@@ -8,7 +8,14 @@
 import Foundation
 import SwiftUI
     
-    
+enum ColorType: String, CaseIterable {
+    case back, text, question, answer, copy, tools
+}
+  
+enum ModeType: String, CaseIterable {
+    case image, chat
+}
+
 extension Animation {
     func reverse(on: Binding<Bool>, delay: Double) -> Self {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
