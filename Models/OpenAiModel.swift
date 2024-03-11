@@ -29,9 +29,6 @@ import Observation
 
     var selectedMode: ModeType = .chat
     
-    //@ObservationIgnored @AppStorage("isDarkMode")
-    var isDarkMode = false
-    
     @ObservationIgnored var client: OpenAISwift
     
     init() {
