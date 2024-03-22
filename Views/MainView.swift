@@ -14,9 +14,12 @@ struct MainView: View {
     @Environment(OpenAiModel.self) var openAI: OpenAiModel
     @Environment(InterfaceModel.self) var interface
     
-    @State var text = ""
-    @State var isThinking = false
-    @State var isPressed = false
+    @State private var text = ""
+    @State private var isThinking = false
+    @State private var isPressed = false
+    
+    @State private var showCamera = false
+    @State private var selectedImage: UIImage?
     
     var focusValue: FocusState<Bool>.Binding
     
@@ -40,7 +43,7 @@ struct MainView: View {
                 focusValue.wrappedValue = false
                 doAsk()
             }) {
-                Text(openAI.selectedMode == .chat ? "Chat" : "Image")
+                Text(openAI.selectedMode == .chat ? "Chat" : openAI.selectedMode == .image ? "Image" : "Camera")
                 .font(Font.custom("Didot-Italic", size: 18))
                 .frame(width: 80, height: 80)
                 .foregroundColor(interface.textColor)
@@ -48,7 +51,7 @@ struct MainView: View {
                 .animation(.easeInOut(duration: 0.2)
                     .reverse(on: $isPressed, delay: 0.2), value: isPressed)
                 .clipShape(Circle())
-            }.shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+            }.shadow(radius: 10)
 
             ChatBubble(direction: .left) {
                 TextEditor(text: $text)
@@ -64,7 +67,7 @@ struct MainView: View {
     }
     
     func doAsk() {
-        Task {
+        Task { @MainActor in   // <--- do task on the main thread
             if !text.trimmingCharacters(in: .whitespaces).isEmpty {
                 isThinking = true
                 await openAI.getResponse(from: text)

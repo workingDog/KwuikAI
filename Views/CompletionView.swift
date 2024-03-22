@@ -59,18 +59,13 @@ struct CompletionView: View {
                             openAI.conversations.remove(at: firstNdx)
                         }
                     }
-                    Spacer().frame(width: 1, height: 1).id("end of list")
                 }
                 .listStyle(.inset)
                 .scrollContentBackground(.hidden)
-                //                .onChange(of: openAI.haveResponse) { _ in
-                //                    if let last = openAI.conversations.last {
-                //                        proxy.scrollTo(last.id)
-                //                        print("----> go to end of list \(last.id)")
-                //                    }
-                //                }
                 .onChange(of: openAI.haveResponse) { 
-                    proxy.scrollTo("end of list")
+                    if let last = openAI.conversations.last {
+                        proxy.scrollTo(last.id)
+                    }
                 }
             }
         }

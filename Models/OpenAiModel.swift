@@ -48,22 +48,22 @@ import Observation
         errorDetected = false
         
         switch selectedMode {
-        case .image: await getImages(from: text)
-        case .chat:  await getChats(from: text)
+            case .image: await getImages(from: text)
+            case .chat: await getChats(from: text)
         }
         
         DispatchQueue.main.async {
             self.haveResponse.toggle()
         }
     }
-    
+
     func getChats(from text: String) async {
         var chatArr = [ChatMessage]()
         if let msg = conversations.last(where: { $0.chats != nil })?.chats {
             chatArr = msg
         }
         chatArr.append(ChatMessage(role: .user, content: text))
-        
+
         do {
             let results = try await client.sendChat(
                 with: chatArr,
@@ -74,19 +74,17 @@ import Observation
                 choices: 1,
                 maxTokens: Int(maxTokens)
             )
-            
-            if results.choices == nil { errorDetected = true }
-            
+
             if let output = results.choices {
-                var converse = Conversation(question: text, answers: [], chats: chatArr)
                 // Note: chats are kept in chats, but displayed from answers
                 output.forEach { msg in
-                    converse.chats?.append(msg.message)
+                    conversations.last?.chats?.append(msg.message)
                     if let cleaned = msg.message.content?.trimmingCharacters(in: .whitespacesAndNewlines) {
-                        converse.answers?.append(TextAnswer(text: cleaned))
+                        conversations.last?.answers?.append(TextAnswer(text: cleaned))
                     }
                 }
-                updateCoversations(converse)
+            } else {
+                errorDetected = true
             }
         } catch {
             print(error)
@@ -108,11 +106,8 @@ import Observation
     func getImages(from text: String) async {
         do {
             let results = try await client.sendImages(with: text, numImages: numImages)
-            
-            if results.data == nil { errorDetected = true }
-            
+
             if let output = results.data {
-                var converse = Conversation(question: text, images: [])
                 // fetch all images in parallel
                 await withTaskGroup(of: UIImage?.self) { group in
                     for item in output {
@@ -121,23 +116,17 @@ import Observation
                         }
                     }
                     for await img in group {
-                        if let image = img, converse.images != nil {
-                            converse.images!.append(ImageAnswer(uimage: image))
+                        if let image = img, conversations.last?.images != nil {
+                            conversations.last?.images!.append(ImageAnswer(uimage: image))
                         }
                     }
                 }
-                updateCoversations(converse)
+            } else {
+                errorDetected = true
             }
         } catch {
             print(error)
         }
     }
-    
-    private func updateCoversations(_ converse: Conversation) {
-        if !conversations.isEmpty {
-            conversations.removeLast()
-        }
-        conversations.append(converse)
-    }
-    
+     
 }

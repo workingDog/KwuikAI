@@ -20,7 +20,7 @@ struct ImageAnswer: Identifiable, Hashable {
     var uimage: UIImage
 }
 
-struct Conversation: Identifiable {
+@Observable class Conversation: Identifiable {
     let id = UUID()
     var question: String
     var answers: [TextAnswer]?

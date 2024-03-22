@@ -39,8 +39,6 @@ Press the **gear shape** icon to:
 ### References
 
 -    [OpenAI API Client Library in Swift](https://github.com/Swift-Almanac/OpenAISwift)
--    Various code snippets from [stackoverflow](https://stackoverflow.com)
--    ChatBubble View from [ChatBubble](https://medium.com/devtechie/chat-bubble-custom-shape-in-swiftui-1f618cd94f3c)
 
 ### Requirement
 
