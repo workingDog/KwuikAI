@@ -22,10 +22,8 @@ Using, the **Swift-Almanac** `OpenAI API Client Library in Swift`  [OpenAISwift]
 
 -   **Tap** on the `share`, to share the previously tapped answer. 
 
--   **Pick** the AI answer type, `Text`, `Image` or `Chat`.
+-   **Pick** the AI answer type, `Chat` or `Image`.
 
-
-To generate code, for example `Swift` code, ask something like, **SwiftUI create a view to fetch data from CoreData**, or **write code in Swift to ...**
 
 #### Settings
 
