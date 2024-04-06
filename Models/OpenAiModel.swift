@@ -26,7 +26,6 @@ import Observation
     var numImages = 1
     
     var model: OpenAIEndpointModelType.ChatCompletions = .gpt4
-
     var selectedMode: ModeType = .chat
     
     @ObservationIgnored var client: OpenAISwift
@@ -52,9 +51,7 @@ import Observation
             case .chat: await getChats(from: text)
         }
         
-        DispatchQueue.main.async {
-            self.haveResponse.toggle()
-        }
+        haveResponse.toggle()
     }
 
     func getChats(from text: String) async {

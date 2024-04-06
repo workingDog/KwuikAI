@@ -49,6 +49,7 @@ struct ContentView: View {
         }
     }
     
+    @ViewBuilder
     var theToolbar: some View {
         VStack {
             HStack {
@@ -65,6 +66,7 @@ struct ContentView: View {
         }
     }
     
+    @ViewBuilder
     var wavyLine: some View {
         Path { path in
             path.move(to: .zero)
@@ -78,9 +80,10 @@ struct ContentView: View {
             .offset(x: -10, y: 0)
     }
     
+    @ViewBuilder
     var modesButton: some View {
         @Bindable var openAI = openAI
-        return Picker("", selection: $openAI.selectedMode) {
+        Picker("", selection: $openAI.selectedMode) {
             Image(systemName: "ellipsis.message").tag(ModeType.chat)
             Image(systemName: "photo").tag(ModeType.image)
         }.pickerStyle(.segmented)
@@ -89,12 +92,14 @@ struct ContentView: View {
             .scaleEffect(1.2)
     }
     
+    @ViewBuilder
     var settingsButton: some View {
         Button(action: { showSettings = true }) {
             Image(systemName: "gearshape")
         }
     }
     
+    @ViewBuilder
     var leftButtons: some View {
         HStack (spacing: 10){
             Button(action: { openAI.conversations.removeAll() }) {
